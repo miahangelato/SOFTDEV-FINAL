@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% load static %}
+
+<head>
+    <title>{%block title%}Create Product{%endblock title%}</title>
+</head>
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/createReview.css' %}">
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-header text-center">
+                    <h2 class="mb-0" style="color: white;">Upload product</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" class="create-product-form" enctype="multipart/form-data">
+                        {% csrf_token %} {{ form.as_p }}
+                        <div class="d-grid">
+                            <button type='submit' class="btn btn-lg btn-block">Post</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

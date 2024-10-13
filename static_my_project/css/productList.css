@@ -1,0 +1,244 @@
+/* .search-form {
+    margin: 2rem auto;
+    display: flex;
+    align-items: center;
+    padding: 0.3rem;
+    border-radius: 1rem;
+    background: white;
+    max-width: 100rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* .search-form:focus-within {
+    background: #bebebe;
+} */
+
+
+/* .search-input-product {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    margin-right: 0.875rem;
+    background: transparent;
+    outline: none;
+    border: none;
+    flex: 1;
+} */
+
+
+/* .search-input-product::placeholder {
+    color: rgba(0, 0, 0, 0.25);
+} */
+
+.product-cat-text a {
+    margin: 0.3rem;
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.sidebar-hr {
+    border: 0.05rem solid rgb(110, 110, 110);
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+}
+
+.no-prods-found {
+    font-size: 5rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    /* Horizontally center */
+    align-items: center;
+    /* Vertically center */
+    min-height: 50vh;
+    /* Minimum height to center it vertically */
+    grid-column: 1 / -1;
+    /* Spans sa buong grid */
+}
+
+
+/* Bootstrap shits */
+
+footer {
+    margin-top: auto;
+    /* Push footer to the bottom */
+}
+
+
+/* Set the layout of the products and sidebar as a grid */
+
+.products {
+    display: grid;
+    grid-template-columns: 20rem 1fr;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.price-input-group {
+    margin-top: 1rem;
+    /* Add spacing above the price filter */
+    display: flex;
+    /* Ensure the input fields are aligned in a row */
+}
+
+.product-sidebar {
+    background-color: black;
+    padding: 1.5rem;
+    border-radius: 0.8rem;
+    border: 1px solid #ccc;
+    position: sticky;
+    top: 0;
+    height: auto;
+    text-align: center;
+    align-self: start;
+}
+
+.card {
+    width: 100%;
+}
+
+body {
+    background: #eee;
+}
+
+.price-input-form {
+    border-radius: 0.3rem;
+    background: #e7e6e6;
+    border: none;
+    width: 50%;
+    margin: 0.125rem;
+    text-align: center;
+    color: #333;
+}
+
+.price-filter-btn {
+    background-color: black;
+    border: solid 0.1rem white;
+    margin: 0.2rem;
+}
+
+.bi.bi-caret-right-fill {
+    color: white;
+}
+
+
+/* Product Items styling */
+
+.product-items {
+    padding: 3.2rem 0;
+}
+
+.product {
+    margin: 2rem;
+    position: relative;
+}
+
+.product-info {
+    background: white;
+    padding: 2rem;
+    border: 0.05rem solid #f2f2f2;
+}
+
+.product-name {
+    color: black;
+    display: block;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+
+/* Grid layout for product items */
+
+@media screen and (max-width: 600px) {
+    .products {
+        grid-template-columns: 1fr;
+        /* One column on mobile */
+        grid-template-rows: auto auto;
+        /* Stack sidebar on top */
+    }
+    .product-sidebar {
+        grid-row: 1;
+    }
+    .product-items {
+        grid-row: 2;
+        /* Product items will be below the sidebar */
+        padding: 0;
+        /* Adjust padding if needed for mobile */
+    }
+    .product {
+        margin: 1rem 0;
+        /* Adjust margins for mobile view */
+    }
+    .search-form {
+        width: 95%;
+        /* Allow more space on smaller screens */
+    }
+    .product-cat-text a {
+        margin: 0rem;
+        text-decoration: none;
+        color: white;
+        font-size: 0.9rem;
+    }
+    .sidebar-hr {
+        border: 0.02rem solid rgb(110, 110, 110);
+        margin-top: 0.05rem;
+        margin-bottom: 0.05rem;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .product-items {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .search-form {
+        width: 70%;
+        /* Increase width on large screens */
+    }
+}
+
+@media screen and (max-width: 600px) {}
+
+.search-form {
+    width: 90%;
+    /* Allow more space on smaller screens */
+}
+
+@media screen and (min-width: 1200px) {
+    .product-items {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .product {
+        margin-right: 1rem;
+        margin-left: 1rem;
+    }
+    .search-form {
+        width: 60%;
+        /* Further increase width on extra-large screens */
+    }
+}
+
+@media screen and (min-width: 1336px) {
+    .product-items {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
+/* Additional adjustments for screens smaller than 600px */
+
+@media screen and (max-width: 600px) {
+    .search-form {
+        width: 95%;
+        /* Allow more space on smaller screens */
+    }
+}

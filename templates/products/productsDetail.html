@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+<head>
+    <title>{%block title%}{{product.name}}{%endblock title%}</title>
+</head>
+
+{% block content %}
+
+<style>
+    .product-details {
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+        /* Optional subtle shadow */
+        margin-bottom: 2rem;
+        /* Add space below the product section */
+    }
+    
+    .product-info {
+        margin-bottom: 1rem;
+        /* Reduce margin for tighter layout */
+    }
+    
+    .product-image {
+        width: 100%;
+        /* Set image width to 100% of its container */
+        border-radius: 0.5rem;
+        /* Apply rounded corners to the image */
+    }
+    
+    .product-price {
+        display: flex;
+        /* Center price horizontally */
+        align-items: center;
+        /* Align price text vertically with seller info */
+    }
+    
+    .seller {
+        margin-top: 0.5rem;
+        /* Add some space above seller info */
+    }
+    
+    .btn-group {
+        display: flex;
+        /* Group buttons horizontally */
+    }
+</style>
+
+<section class="product-details py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6">
+                <img src="{{ product.image.url }}" class="product-image img-fluid mb-3 mb-md-0" alt="{{ product.name }}" />
+            </div>
+
+            <div class="col-md-6">
+                <div class="product-info">
+                    <h1 class="display-5 fw-bolder">{{ product.name }}</h1>
+                    <div class="product-price fs-5 mb-2">
+                        <span class="text-muted">${{ product.price }}</span>
+                    </div>
+                    <p class="lead">{{ product.description }}</p>
+                    <p class="seller"><strong>Seller:</strong> {{ product.seller.username }}</p>
+
+                    <div class="d-flex justify-content-between mt-3">
+                        <div class="btn-group">
+                            <form method="POST" action="{% url 'addToCart' product.id %}" class="d-inline">
+                                {% csrf_token %}
+                                <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                  <i class="bi-cart-fill me-1"></i> Add to cart
+                </button>
+                            </form> {% if product.seller.username == request.user.username %}
+                            <a href="{% url 'updateProduct' product.id %}" class="btn btn-secondary">Update Product</a>
+                            <form method="POST" action="{% url 'deleteProduct' product.id %}" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Delete Product</button>
+                            </form>
+                            {% endif %}
+                        </div>
+
+                        <div class="btn-group">
+                            <a href="{% url 'review' product.id %}" class="btn btn-success">Review</a>
+                            <a href="{% url 'chats'%}?user={{product.seller.username}}" class="btn btn-warning">Chat with Seller</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="reviews py-5 bg-light">
+    <div class="container px-4 px-lg-5 my-5">
+        <h2 class="fw-bolder mb-4">Reviews</h2>
+        {% for foo in reviews %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ foo.user.username }}</h5>
+                <p class="card-text">{{ foo.review }}</p>
+                <p class="card-text">Rating: {{ foo.rating }}/5</p>
+
+                {% if foo.user == request.user %}
+                <form method="POST" action="{% url 'deleteReview' foo.id %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete Review</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

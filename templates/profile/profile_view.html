@@ -1,0 +1,89 @@
+{% extends 'base.html' %} {% load static %}
+
+<head>
+    <title>{%block title%}Profile{%endblock title%}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+    <style>
+        /* Custom styles for profile page */
+        
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+{% block content %}
+
+<body>
+    <div class="container-xl px-4 mt-4">
+
+        <div class="row">
+            <div class="col-xl-4">
+                <!-- Profile picture card-->
+                <div class="card mb-4 mb-xl-0">
+                    <div class="card-header">Profile Picture</div>
+                    <div class="card-body text-center">
+                        <!-- Profile picture image-->
+                        <img class="img-account-profile rounded-circle mb-2 profile-avatar" src="{{ profile.profile_picture.url }}" alt="Profile Picture">
+                        <!-- Profile picture help block-->
+                        <div style="font-size: 2.5rem;" class="font-italic  mb-4">{{request.user.username}}</div>
+
+                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                        <!-- Profile picture upload button-->
+                        <form action="{%url 'EditProfile'%}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %} {{profile.as_p}}
+                            <input type="file" name="profile_picture" class="form-control">
+                            <button type="submit" class="btn btn-primary mt-3">Change profile</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-8">
+                <div class="card mb-4">
+                    <div class="card-header">Account Details</div>
+                    <a href="{% url 'createProduct' %}" class="text-center">Add product</a>
+                    <div class="card-body">
+                        <h5 class="card-title">Products Posted ({{ products.count }})</h5>
+                        <ul class="list-unstyled mb-3">
+                            {% for product in products %}
+                            <li class="d-flex align-items-center border-bottom py-3">
+                                <img class="mr-3" src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 50px; height: auto;">
+                                <div class="flex-grow-1">
+                                    <span>{{ product.name }}</span>
+                                    <div class="text-muted">{{ product.price }} USD - Posted on {{ product.created_at }}</div>
+                                </div>
+                                <a href="{% url 'viewProduct' product.id %}" class="btn btn-sm btn-primary ml-auto">View Product</a>
+                            </li>
+                            {% empty %}
+                            <li class="border-bottom py-3">No products posted yet.</li>
+                            {% endfor %}
+                        </ul>
+
+                        <h5 class="card-title">Orders</h5>
+                        <ul class="list-unstyled mb-3">
+                            {% for order in orders %}
+                            <li class="border-bottom py-3">Order #{{ order.id }} - {{ order.total_price }} USD - Status: {{ order.status }}</li>
+                            {% empty %}
+                            <li class="border-bottom py-3 border-white">No orders found.</li>
+                            {% endfor %}
+                        </ul>
+
+                        <h5 class="card-title">Reviews</h5>
+                        <ul class="list-unstyled">
+                            {% for review in reviews %}
+                            <li class="border-bottom py-3">{{ review.product.name }} - {{ review.rating }} stars - "{{ review.comment }}"</li>
+                            {% empty %}
+                            <li class="border-bottom py-3">No reviews made.</li>
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

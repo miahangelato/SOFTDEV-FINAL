@@ -1,0 +1,272 @@
+body,
+.auth-section {
+    font-family: "Cabin", sans-serif;
+    margin-bottom: 1rem;
+}
+
+.auth-container {
+    width: 100%;
+    padding: 0;
+}
+
+.auth-section {
+    padding: 4rem;
+    /* Reduced padding */
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    /* Center vertically */
+    justify-content: center;
+    /* Center horizontally */
+    font-size: 1.2rem;
+    /* Smaller base font size */
+}
+
+.auth-card {
+    border-radius: 1rem;
+    width: 100%;
+    max-width: 50rem;
+    margin: auto;
+}
+
+.auth-row {
+    display: flex;
+}
+
+.auth-left-side,
+.auth-right-side {
+    flex: 1;
+    padding: 1.5rem;
+    /* Reduced padding */
+}
+
+.auth-right-side {
+    width: 100%;
+    padding: 0;
+    /* Remove any padding */
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    border: 2px solid black; 
+    padding: 1.5rem;
+    margin: 0;
+}
+
+.auth-left-side {
+    background-color: black;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    color: #fff;
+}
+
+.auth-align-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.auth-icon {
+    font-size: 2.8rem;
+    /* Smaller icon size */
+}
+
+.auth-col {
+    text-align: center;
+}
+
+.auth-img {
+    margin-bottom: 0.8rem;
+    /* Slightly smaller margin */
+    border-radius: 0.4rem;
+}
+
+.auth-hr {
+    border: 0.05rem solid white;
+    /* Slightly smaller */
+}
+
+.auth-title {
+    font-size: 2rem;
+    /* Reduced font size */
+    margin-bottom: 0.8rem;
+}
+
+.auth-text {
+    font-size: 1.1rem;
+    /* Slightly smaller */
+    margin-top: 0.8rem;
+}
+
+.auth-header h3 {
+    font-size: 2rem;
+    /* Smaller login header */
+    text-align: center;
+}
+
+.auth-card-body {
+    padding: 1.5rem;
+    /* Reduced padding */
+}
+
+.auth-gammerce {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    /* Adjust the size as needed */
+    margin-left: 10px;
+}
+
+h2.auth-title {
+    font-family: 'Cabin', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+p.auth-text {
+    font-family: 'Cabin', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+.auth-header {
+    margin-bottom: 1.5rem;
+    /* Reduced margin */
+}
+
+.auth-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.auth-btn {
+    background-color: black;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    /* Reduced padding */
+    margin: 0.8rem;
+    border: none;
+    border-radius: 0.5rem;
+    /* Slightly smaller radius */
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    font-size: 1rem;
+    /* Smaller button font */
+}
+
+.auth-footer {
+    margin-top: 1.5rem;
+    /* Reduced margin */
+}
+
+.auth-footer-hr {
+    border: 0.05rem solid #9f9e9e;
+}
+
+.auth-footer-links {
+    display: flex;
+    gap: 0.8rem;
+    /* Reduced gap */
+    padding: 0.8rem;
+    justify-self: space-evenly;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.auth-link {
+    flex: 1;
+    color: rgb(85, 81, 81);
+    text-decoration: none;
+    flex-wrap: wrap;
+    width: 100%;
+    font-size: 1.1rem;
+    /* Smaller link font */
+}
+
+.auth-link:hover {
+    text-decoration: underline;
+    color: grey;
+}
+
+
+/* Textbox */
+
+.auth-form input[type="text"],
+.auth-form input[type="password"],
+.auth-form input[type="email"] {
+    width: 100%;
+    padding: 0.5rem;
+    /* Smaller padding */
+    margin-bottom: 0.8rem;
+    /* Reduced spacing */
+    border: 0.05rem solid #ccc;
+    border-radius: 0.4rem;
+}
+
+.auth-form input[type="text"]:focus,
+.auth-form input[type="password"]:focus,
+.auth-form input[type="email"]:focus {
+    border-color: #000;
+    outline: none;
+}
+
+@media (max-width: 880px) {
+    .auth-row {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .auth-section {
+        padding: 3rem 1.5rem;
+        /* Reduced padding for smaller screens */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        min-height: 100vh;
+    }
+    .auth-card {
+        margin: 1rem 0;
+        width: 100%;
+        box-shadow: none;
+        border: none;
+    }
+    .auth-left-side {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        border-radius: 1rem 1rem 0 0;
+        text-align: center;
+        width: 100%;
+    }
+    .auth-right-side {
+        width: 100%;
+        box-shadow: 0 0.15rem 0.3rem rgba(0, 0, 0, 0.1);
+        border-radius: 0 0 1rem 1rem;
+    }
+    /* Responsively scale down the font sizes */
+    .auth-title {
+        font-size: 1.6rem;
+    }
+    .auth-text {
+        font-size: 1rem;
+    }
+    .auth-header h3 {
+        font-size: 1.8rem;
+    }
+    .auth-btn {
+        font-size: 1rem;
+        width: 100%;
+    }
+    .auth-footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    .auth-link {
+        font-size: 0.9rem;
+        width: 100%;
+        margin: 0.5rem 0;
+        text-align: center;
+    }
+}

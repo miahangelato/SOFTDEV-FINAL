@@ -1,0 +1,66 @@
+{% extends 'base.html' %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/shipping.css?v=1.1' %}" rel="stylesheet">
+    <title>{%block title%}Shipping{%endblock title%}</title>
+</head>
+{% block content %}
+
+<body>
+    <div class="container mt-5 mb-5">
+
+        <div class="row">
+
+            <div class="col-md-8 order-md-1">
+
+                <h4 class="mb-3">Billing and Shipping Information</h4>
+                <form class="needs-validation mb-3" method="POST"> {% csrf_token %}
+
+                    <div class="row">
+                        <div class="form-group col-md-12 mb-3">
+                            <strong>Country:</strong> {{ shipping_form.country }} {{ shipping_form.country.errors }}
+                        </div>
+
+
+                        <div class="form-group col-md-12 mb-3">
+                            <strong>Address:</strong> {{ shipping_form.address }} {{ shipping_form.address.errors }}
+                        </div>
+
+                        <div class="form-group col-md-12 mb-3"> <strong>City:</strong> {{ shipping_form.city }} {{ shipping_form.city.errors }}
+                        </div>
+
+                        <div class="form-group col-md-12 mb-3"> <strong>Postal Code:</strong> {{ shipping_form.postal_code }} {{ shipping_form.postal_code.errors }}
+                        </div>
+                    </div>
+
+                    <hr class="mb-4">
+
+                    <h4 class="mb-3">Payment</h4>
+
+                    <div class="d-block my-3">
+                        <div class="custom-control custom-radio">
+                            <label class="custom-control-label">
+                <input id="payment" name="payment" type="radio" class="custom-control-input" value="PayPal" required>
+                PayPal
+              </label>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <div id="paypal-button-container"></div>
+                    </div>
+
+                    <hr class="mb-4">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+
+    {% endblock %}
