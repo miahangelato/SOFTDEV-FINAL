@@ -67,21 +67,27 @@
                             <form method="POST" action="{% url 'addToCart' product.id %}" class="d-inline">
                                 {% csrf_token %}
                                 <button class="btn btn-outline-dark flex-shrink-0" type="submit">
-                  <i class="bi-cart-fill me-1"></i> Add to cart
-                </button>
-                            </form> {% if product.seller.username == request.user.username %}
-                            <a href="{% url 'updateProduct' product.id %}" class="btn btn-secondary">Update Product</a>
-                            <form method="POST" action="{% url 'deleteProduct' product.id %}" class="d-inline">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-danger">Delete Product</button>
-                            </form>
-                            {% endif %}
+                                    <i class="bi-cart-fill me-1"></i> Add to cart
+                                </button>
+                            </form> 
                         </div>
-
+                    
                         <div class="btn-group">
                             <a href="{% url 'review' product.id %}" class="btn btn-success">Review</a>
                             <a href="{% url 'chats'%}?user={{product.seller.username}}" class="btn btn-warning">Chat with Seller</a>
                         </div>
+                    </div>
+                    
+                   
+                    {% if product.seller.username == request.user.username %}
+                    <div class="btn-group mt-3 w-100">
+                        <a href="{% url 'updateProduct' product.id %}" class="btn btn-secondary w-50">Update Product</a>
+                        <form method="POST" action="{% url 'deleteProduct' product.id %}" class="d-inline w-50">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger w-100">Delete Product</button>
+                        </form>
+                    </div>
+                    {% endif %}
                     </div>
                 </div>
             </div>
@@ -97,7 +103,16 @@
             <div class="card-body">
                 <h5 class="card-title">{{ foo.user.username }}</h5>
                 <p class="card-text">{{ foo.review }}</p>
-                <p class="card-text">Rating: {{ foo.rating }}/5</p>
+                <p class="card-text">
+                    Rating:
+                    {% for i in "12345" %}
+                        {% if forloop.counter <= foo.rating %}
+                            <i class="bi bi-star-fill" style="color: gold;"></i> 
+                        {% else %}
+                            <i class="bi bi-star"style="color: gold;"></i>  
+                        {% endif %}
+                    {% endfor %}
+                </p>
 
                 {% if foo.user == request.user %}
                 <form method="POST" action="{% url 'deleteReview' foo.id %}" class="d-inline">
