@@ -90,6 +90,7 @@ def deleteReview(request, pk):
 
 def UserCartList(request):
     cart = request.session.get('cart', {})
+    
     print(cart)
     total_cost = 0
     for key, item in cart.items():
@@ -203,9 +204,11 @@ def shipping_view(request):
             print('shippinf', shipping)
             # print(form.cleaned_data)
             payment['payment'] = payment_form.cleaned_data['payment']
+            request.session['payment'] = payment
             print(payment)
             return redirect('confirm_order')
         request.session['shipping'] = shipping
+        request.session['payment'] = payment
 
     
     return render(request, 'cart/shipping.html', {'shipping_form': shipping_form, 'payment_form':payment_form})

@@ -8,7 +8,7 @@ from django.shortcuts import redirect
 from products.models import Products
 from django.contrib.auth.decorators import login_required
 from products.models import Category
-from products.models import Products, Order, Review
+from products.models import Products, Order, Review, OrderItem
 
 User = get_user_model()
 from django.db.models import Min, Max
@@ -105,7 +105,7 @@ def seller_register(request):
         if seller_form.is_valid():
             # Get the currently logged-in user
             user = request.user
-            user.seller = True  # Mark user as a seller
+            # user.seller = True  # Mark user as a seller
             user.save()
 
             # Create the Seller profile and link it to the logged-in user
