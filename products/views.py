@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 
 
 # def listProducts(request):
@@ -30,7 +31,8 @@ def createProduct(request):
             if form.is_valid():
                 product = form.save(commit=False) 
                 product.seller = request.user 
-                product.save()  
+                product.save()
+                messages.success(request, "Product Sucessfully Created!")  
                 return redirect('index')  
         else:
             form = ProductForm()
@@ -51,6 +53,7 @@ def Updateproduct(request, pk):
             print(form.errors)
             if form.is_valid():
                 form.save()
+                messages.success(request, "Product Sucessfully Updated!")  
                 return redirect('index')
         else:
             form = ProductForm(instance=product)
@@ -63,6 +66,7 @@ def deleteProduct(request, pk):
         return HttpResponse("You don't have permission to delete this product.")
     else:
         product.delete()
+        messages.success(request, "Product Sucessfully Deleted!")  
         return redirect('index')
 
 
@@ -75,6 +79,7 @@ def createReview(request, pk):
         print(form)
         if form.is_valid():
             review = form.save(product, request.user, product.seller)
+            messages.success(request, "Review Sucessfully Created!")  
             return redirect('viewProduct', pk=pk)
     else:
         form = ReviewForm()
@@ -85,6 +90,7 @@ def deleteReview(request, pk):
     if request.user != review.user:
         return HttpResponse("You don't have permission to delete this review.")
     review.delete()
+    messages.success(request, "Review Sucessfully Deleted!") 
     return redirect('viewProduct', pk=review.product.pk)
 
 
@@ -299,6 +305,7 @@ def order_complete(request):
         request.session['cart'] = {}
         request.session['shipping'] = {}
         request.session['payment'] = {}
+        messages.success(request, "Order Success!")
         return redirect('index')
     # return render(request, 'cart/confirm_order.html', context)
 

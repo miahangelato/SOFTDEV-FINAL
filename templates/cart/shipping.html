@@ -12,6 +12,12 @@
 
 <body>
     <div class="container mt-5 mb-5">
+        {% for msg in messages %}
+<div class="alert alert-warning alert-dismissible fade show mx-auto my-3" role="alert" style="width: 50%;">
+    <strong>{{ msg }}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
 
         <div class="row">
 

@@ -8,7 +8,8 @@ from django.shortcuts import redirect
 from products.models import Products
 from django.contrib.auth.decorators import login_required
 from products.models import Category
-from products.models import Products, Order, Review, OrderItem
+from products.models import Products, Order, Review
+from django.contrib import messages
 
 User = get_user_model()
 from django.db.models import Min, Max
@@ -71,6 +72,7 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Account Successfully Registered!")
             return redirect('login')  # Redirect to login page after registration
     else:
         form = UserRegisterForm()
@@ -85,6 +87,7 @@ def UserLogin(request):
             print(user)  # Debug: Check if user is fetched correctly
             request.session['user_convo'] = Mychats.objects.filter(me=user).count()
             login(request, user)
+            messages.success(request, "Successfully Logged In!")
             return redirect('index')  # Redirect after successful login
     else:
         form = UserLoginForm()
@@ -112,7 +115,7 @@ def seller_register(request):
             seller = seller_form.save(commit=False)
             seller.user = user  # Link the seller to the user
             seller.save()
-
+            messages.success(request, "Account Successfully Registered As Seller!")
             return redirect('index')  # Redirect to index after registration
     else:
         seller_form = SellerRegisterForm()
